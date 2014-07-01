@@ -1,4 +1,4 @@
-<pre><?php
+<?php
 session_start();
 $times = 100000;
 
