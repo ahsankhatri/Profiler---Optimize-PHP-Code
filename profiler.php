@@ -7,7 +7,7 @@ $path = 'http://localhost';
 
 # ==================================
 $start_time_1 = microtime(TRUE);
-for ($x=0; $x < 1000 ; $x++) { 
+for ($x=0; $x < $times ; $x++) { 
     # Code Start
     $code = substr($path, 0,-1)=='/' ? $path : $path . '/';
 
@@ -18,7 +18,7 @@ $end_time_1 = microtime(TRUE);
 
 # ==================================
 $start_time_2 = microtime(TRUE);
-for ($x=0; $x < 1000 ; $x++) { 
+for ($x=0; $x < $times ; $x++) { 
     # Code Start
     $code = rtrim($path, '/') . '/';
 
@@ -33,6 +33,15 @@ echo '<br /><br />';
 
 $result_2 = ($end_time_2 - $start_time_2);
 echo 'Code_2 took: ' . $result_2;
+
+echo '<hr>';
+if ( $result_1 < $result_2 ) {
+	echo 'Code_1 is <strong>' . sprintf('%.2f', ( 100 - ($result_1*100) / $result_2 )) . '%</strong> faster than Code_2';
+} else if ( $result_2 < $result_1 ) {
+	echo 'Code_2 is <strong>' . sprintf('%.2f', ( 100 - ($result_2*100) / $result_1 )) . '%</strong> faster than Code_1';
+} else {
+	echo 'Seems to be equal percentage';
+}
 
 // mySashka =p
 
